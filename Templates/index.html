@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Burnout Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Burnout Prediction</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="designation">Designation:</label>
+                <input type="number" id="designation" name="designation" required>
+            </div>
+            <div class="form-group">
+                <label for="resource_allocation">Resource Allocation:</label>
+                <input type="number" id="resource_allocation" name="resource_allocation" required>
+            </div>
+            <div class="form-group">
+                <label for="mental_fatigue_score">Mental Fatigue Score:</label>
+                <input type="number" id="mental_fatigue_score" name="mental_fatigue_score" required>
+            </div>
+            <div class="form-group">
+                <label for="company_type">Company Type:</label>
+                <select id="company_type" name="company_type" required>
+                    <option value="Product">Product</option>
+                    <option value="Service">Service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="wfh_setup_available">WFH Setup Available:</label>
+                <select id="wfh_setup_available" name="wfh_setup_available" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction is not none %}
+        <div class="result">
+            <h2>Predicted Burnout Level: {{ prediction }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
